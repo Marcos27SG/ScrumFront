@@ -1,0 +1,65 @@
+<div class="container">
+  <h3 style="margin-left: 10px ;margin-bottom:30px; margin-top: 40;">Sala: {{room}}</h3>
+  <h3 style="margin-left: 10px ;margin-bottom:30px; margin-top: 40;"><u>Seleccione un Valor</u></h3>
+ 
+
+  <div class= row>
+  <div class="card w-20" *ngFor="let number of userService.elementsSystemVoting"
+   style="margin-left: 10px ;margin-bottom:10px;">
+    <div class="card-body">
+      <h5 class="card-title ; justify-content-center"   >{{number}}</h5>
+     
+      <button type="button" class="btn btn-outline-dark"
+      (click)="getItems($event)" value={{number}}>Votar
+    </button>
+    </div>
+  </div>
+  </div>
+  
+  <h4 style="margin-left: 10px ;
+  margin-bottom:30px; margin-top: 40;" 
+  *ngIf="votation === 0 ">Valor establecido en : -
+  </h4>
+  <h4 style="margin-left: 10px ;
+  margin-bottom:30px; margin-top: 40;" 
+  *ngIf="votation !== 0 ">Valor establecido en :
+    {{votation}} </h4>
+  <h3 style="margin-left: 10px ;
+  margin-bottom:30px; margin-top: 40;"><u>Resultados</u>
+  </h3>
+  <button class="btn btn-primary " 
+  style="margin-bottom:30px;" 
+  (click)="actualizateTable()">Actualizar</button>
+  <button class="btn btn-primary"
+   style="margin-left: 10px; margin-bottom:30px;" 
+   (click)="actualizateResults()">Mostrar
+    Resultados</button>
+  <button class="btn btn-primary"
+   style="margin-left : 10px ;margin-bottom:30px;"
+    (click)="startAgain()">Reiniciar</button>
+  <button class="btn btn-primary" 
+  style="margin-left: 10px ;margin-bottom:30px;"
+   (click)="exitRoom()">Salir</button>
+  <br>
+  <div class = "row">
+  <div class="col-md-8 justify-content-center">
+    <table class="table table-striped" style="margin-left: 10px ;margin-bottom:50px;">
+      <thead style = "background-color:#B0B0B0;">
+        <th>Name</th>
+
+        <th>Score</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userService.usersData">
+          <td>{{ user.name }}</td>
+          <td *ngIf="user.score === 0 && showResults === false"> - </td>
+          <td *ngIf="user.votation === true && showResults === false">X</td>
+          <td *ngIf="showResults === true">{{user.score}}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <!-- <div style="margin-left: 10px ;margin-bottom:30px;"></div> -->
+  </div>
+</div>
+</div>

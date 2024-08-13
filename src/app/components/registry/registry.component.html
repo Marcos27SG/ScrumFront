@@ -1,0 +1,55 @@
+<body class = "router">
+<div class="container">
+
+<div class="row" >
+ 
+
+  <div class="col-md-4">
+    <h3 class= "d-flex justify-content-center">Crear Sala</h3>
+    <div class ="card" >
+      <div class="card-body p-4">
+
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" class="form-control" placeholder="Introduzca su nombre" (keyup)="onKey($event)"
+        name="name_of_creator_room" >
+    </div>
+    <div class="form-group">
+      <label>Establecer Codigo de Sala</label>
+    <input type="number" class="form-control" placeholder="#Ejemplo (1234)"(keyup)="onKey2($event)" name=name_of_room_created>
+  </div>
+  <div class="form-group">
+    <label>Sistema de Votacion </label>
+    <select class="form-control" name="miselect" (change)="selectChangeHandler($event)"  >
+      <option  *ngFor="let item of userService.votingSystemData">{{item.name}} </option>
+    </select>
+    <p style = "color: red;">{{errorHandlingCreateRoom}}</p>
+  </div>
+    <button class="btn btn-primary"(click)="createNewUser()">Crear</button>
+</div>
+    </div>
+  </div>
+
+  
+  <div class="col-md-4">
+    <h3 class= "d-flex justify-content-center">Unirse a Sala</h3>
+    <div class ="card" >
+      <div class="card-body p-4">
+
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" class="form-control" placeholder="Introduzca su nombre" (keyup)="onKey3($event)"
+        name=name_of_user_join>
+    </div>
+    <div class="form-group">
+      <label>Codigo de Sala</label>
+    <input type="number" class="form-control" placeholder="#Ejemplo(1234)"(keyup)="onKey4($event)" name=name_of_room_join>
+  </div>
+  <p style = "color: red;">{{errorHandlingJoinRoom}}</p>
+    <button class="btn btn-primary"(click)="joinRoomUser()">Unirse</button>
+</div>
+    </div>
+  </div>
+  </div>
+</div>
+</body>
